@@ -168,53 +168,53 @@
       async function predict() {
         // predict can take in an image, video or canvas html element
         var image1 = document.getElementById("face-image1");
-        // var image2 = document.getElementById("face-image2");
-        // const prediction1 = await model.predict(image1, false);
-        // const prediction2 = await model.predict(image2, false);
+        var image2 = document.getElementById("face-image2");
+        const prediction1 = await model.predict(image1, false);
+        const prediction2 = await model.predict(image2, false);
      
-        // var handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
-        // var handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
+        var handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
+        var handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
 
-        // var handsome1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome1+'</p>';
-        // var handsome2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome2+'</p>';
+        var handsome1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome1+'</p>';
+        var handsome2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome2+'</p>';
 
-        // var ugly1 = (prediction1[1].probability.toFixed(2)) * 100;
-        // var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
+        var ugly1 = (prediction1[1].probability.toFixed(2)) * 100;
+        var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
 
-        // var ugly1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly1+'</p>';
-        // var ugly2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly2+'</p>';
+        var ugly1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly1+'</p>';
+        var ugly2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly2+'</p>';
 
-        // $(".percent-bar-handsome").eq(0).data("per", handsome1);
-        // $(".percent-bar-handsome").eq(1).data("per", handsome2);
+        $(".percent-bar-handsome").eq(0).data("per", handsome1);
+        $(".percent-bar-handsome").eq(1).data("per", handsome2);
 
-        // $(".percent-bar-handsome").eq(0).append(handsome1Text);
-        // $(".percent-bar-handsome").eq(1).append(handsome2Text);
+        $(".percent-bar-handsome").eq(0).append(handsome1Text);
+        $(".percent-bar-handsome").eq(1).append(handsome2Text);
 
-        // $(".percent-bar-ugly").eq(0).data("per", ugly1);
-        // $(".percent-bar-ugly").eq(1).data("per", ugly2);
+        $(".percent-bar-ugly").eq(0).data("per", ugly1);
+        $(".percent-bar-ugly").eq(1).data("per", ugly2);
 
-        // $(".percent-bar-ugly").eq(0).append(ugly1Text);
-        // $(".percent-bar-ugly").eq(1).append(ugly2Text);
+        $(".percent-bar-ugly").eq(0).append(ugly1Text);
+        $(".percent-bar-ugly").eq(1).append(ugly2Text);
 
-        // if (handsome1 > handsome2) {
-        //   var crownImg = "<img src='img/crowns.png'/><br>";
-        //   $('.modal-body').append(crownImg);
-        //   $("#face-image1").clone().appendTo('.modal-body');
-        //   var handsomeNum = "<div class='text'>미남 지수:" + handsome1 + "</div>";
-        //   $('.modal-body').append(handsomeNum);
-        // } else if (handsome1 < handsome2) {
-        //   var crownImg = "<img src='img/crowns.png'/><br>";
-        //   $('.modal-body').append(crownImg);
-        //   $("#face-image2").clone().appendTo('.modal-body');
-        //   var handsomeNum = "<div class='text'>미남 지수:" + handsome2 + "</div>";
-        //   $('.modal-body').append(handsomeNum);
-        // } else {
-        //   var drawText = "<div class='text'>무승부!</div>";
-        //   drawText.appendTo('.modal-body');
-        // }
+        if (handsome1 > handsome2) {
+          var crownImg = "<img src='img/crowns.png'/><br>";
+          $('.modal-body').append(crownImg);
+          $("#face-image1").clone().appendTo('.modal-body');
+          var handsomeNum = "<div class='text'>미남 지수:" + handsome1 + "</div>";
+          $('.modal-body').append(handsomeNum);
+        } else if (handsome1 < handsome2) {
+          var crownImg = "<img src='img/crowns.png'/><br>";
+          $('.modal-body').append(crownImg);
+          $("#face-image2").clone().appendTo('.modal-body');
+          var handsomeNum = "<div class='text'>미남 지수:" + handsome2 + "</div>";
+          $('.modal-body').append(handsomeNum);
+        } else {
+          var drawText = "<div class='text'>무승부!</div>";
+          drawText.appendTo('.modal-body');
+        }
         $('#modal-btn').click();
         $("ul.percent-ul").show();
-        //drawingProgressBar();
+        drawingProgressBar();
         $(".remove-image").hide();
         $(".addthis").show();
         $(".loading").hide();
