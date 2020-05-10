@@ -225,17 +225,17 @@
   </div>
 </body>
 <script>
-
+  init();
 
   function checkLoading() {
     var image1 = $('#face-image1').attr("src");
     var image2 = $('#face-image2').attr("src");
     if (image1 != "#" && image2 != "#") {
       $(".loading").show();
-      init().then(function () {
+      //init().then(function () {
         predict();
         $('#loading').hide();
-      });
+      //});
     }
   }
 
