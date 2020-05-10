@@ -142,7 +142,7 @@
       // the link to your model provided by Teachable Machine export panel
       const URL = "https://teachablemachine.withgoogle.com/models/VsNUhLxd_/";
 
-      let model, webcam, labelContainer1, labelContainer2, maxPredictions;
+      let model, webcam, handsome1, handsome2, maxPredictions;
 
       // Load the image model and setup the webcam
       async function init() {
@@ -164,41 +164,49 @@
         //   labelContainer2.appendChild(document.createElement("div"));
         // }
       }
+      async function predict2(){
+        var image2 = document.getElementById("face-image2");
+        const prediction2 = await model.predict(image2, false);
+        handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
+        var handsome2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome2 + '</p>';
+        var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
+        var ugly2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly2 + '</p>';
+        $(".percent-bar-handsome").eq(1).data("per", handsome2);
+        $(".percent-bar-handsome").eq(1).append(handsome2Text);
+        $(".percent-bar-ugly").eq(1).data("per", ugly2);
+        $(".percent-bar-ugly").eq(1).append(ugly2Text);
+        await dectation();
+      }
 
       // run the webcam image through the image model
-      async function predict() {
+      async function predict1() {
         // predict can take in an image, video or canvas html element
         var image1 = document.getElementById("face-image1");
-        var image2 = document.getElementById("face-image2");
+        
         const prediction1 = await model.predict(image1, false);
-        const prediction2 = await model.predict(image2, false);
+        
         // for (let i = 0; i < maxPredictions; i++) {
         //prediction[0].className = Handsome prediction1[0].probability.toFixed(2) = 1.00
         //prediction[1].className = Ugly prediction1[1].probability.toFixed(2) = 1.00
-        var handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
-        var handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
+        handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
+        
 
         var handsome1Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome1 + '</p>';
-        var handsome2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome2 + '</p>';
 
         var ugly1 = (prediction1[1].probability.toFixed(2)) * 100;
-        var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
 
         var ugly1Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly1 + '</p>';
-        var ugly2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly2 + '</p>';
 
         $(".percent-bar-handsome").eq(0).data("per", handsome1);
-        $(".percent-bar-handsome").eq(1).data("per", handsome2);
 
         $(".percent-bar-handsome").eq(0).append(handsome1Text);
-        $(".percent-bar-handsome").eq(1).append(handsome2Text);
 
         $(".percent-bar-ugly").eq(0).data("per", ugly1);
-        $(".percent-bar-ugly").eq(1).data("per", ugly2);
 
         $(".percent-bar-ugly").eq(0).append(ugly1Text);
-        $(".percent-bar-ugly").eq(1).append(ugly2Text);
+      }
 
+      function dectation(){
         if (handsome1 > handsome2) {
           var crownImg = "<img src='img/crowns.png'/><br>";
           $('.modal-body').append(crownImg);
@@ -258,26 +266,12 @@
     var image2 = $('#face-image2').attr("src");
     if (image1 != "#" && image2 != "#") {
       $(".loading").show();
-
-      if (userAgent.indexOf('chrome') != -1) {
-        init().then(function () {
-          predict();
+      init().then(function () {
+          predict1().then(function(){
+            predict2();
+          });
           $('#loading').hide();
         });
-
-      } else if (userAgent.indexOf('safari') != -1) {
-        init().then(function () {
-          predict();
-          $('#loading').hide();
-        });
-      } else {
-        setTimeout("predict()", 500);
-      }
-     
-      //init().then(function () {
-      //predict();
-      //$('#loading').hide();
-      //});
     }
   }
 
