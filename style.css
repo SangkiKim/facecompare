@@ -79,12 +79,7 @@ body {
 
 }
 
-.file-upload-image {
-  max-height: 30vw;
-  max-width: 30vw;
-  margin: auto;
-  /* padding: 20px; */
-}
+
 
 .remove-image {
   width: 20%;
@@ -244,6 +239,11 @@ body {
     width:30vw;
     height:30vw;
   }
+  .file-upload-image {
+    max-height: 30vw;
+    max-width: 30vw;
+    margin: auto;
+  }
 }
 
 /* 中デバイス（タブレット, 992px 未満） */
@@ -254,6 +254,11 @@ body {
   .image-upload-wrap {
     width:50vw;
     height:50vw;
+  }
+  .file-upload-image {
+    max-height: 50vw;
+    max-width: 50vw;
+    margin: auto;
   }
 }
 
@@ -266,6 +271,11 @@ body {
     width:50vw;
     height:50vw;
   }
+  .file-upload-image {
+    max-height: 50vw;
+    max-width: 50vw;
+    margin: auto;
+  }
 }
 
 /* 極小デバイス（縦向きモバイル, 576px 未満） */
@@ -277,6 +287,11 @@ body {
   .image-upload-wrap {
     width:80vw;
     height:80vw;
+  }
+  .file-upload-image {
+    max-height: 80vw;
+    max-width: 80vw;
+    margin: auto;
   }
  
 }
