@@ -232,8 +232,9 @@
     var image2 = $('#face-image2').attr("src");
     if (image1 != "#" && image2 != "#") {
       $(".loading").show();
+      setTimeout("predict()", 500);
       //init().then(function () {
-        predict();
+        //predict();
         $('#loading').hide();
       //});
     }
