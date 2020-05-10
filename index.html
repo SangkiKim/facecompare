@@ -226,9 +226,10 @@
   </div>
 </body>
 <script>
-  var userAgent = window.navigator.userAgent;
+  var userAgent = window.navigator.userAgent.toLowerCase();;
 
 
+  init();
 
   function checkLoading() {
     var image1 = $('#face-image1').attr("src");
@@ -237,16 +238,16 @@
       $(".loading").show();
 
       if (userAgent.indexOf('chrome') != -1) {
-        init().then(function () {
-          predict();
-          $('#loading').hide();
-        });
+         setTimeout("predict()", 500);
+     
       } else if (userAgent.indexOf('safari') != -1) {
-        init();
         predict();
-        $('#loading').hide();
+       
+      } else {
+        setTimeout("predict()", 500);
+      
       }
-
+      $('#loading').hide();
       //init().then(function () {
       //predict();
       //$('#loading').hide();
