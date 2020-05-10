@@ -21,8 +21,8 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   <script defer src="js/all.js"></script>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ead11ef2a3ebd6f"></script>
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ead11ef2a3ebd6f"></script>
 
 
 </head>
@@ -54,7 +54,8 @@
 
       <!-- Result Modal -->
       <!-- Button trigger modal -->
-      <button id="modal-btn" style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <button id="modal-btn" style="display: none;" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#exampleModal">
       </button>
       <div class="modal modal-result fade" id="exampleModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,11 +127,11 @@
         </li>
       </ul>
 
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis text">
-                  <div>공유하기</div>
-                <div class="addthis_inline_share_toolbox_2gmu"></div>
-              </div>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+      <div class="addthis text">
+        <div>공유하기</div>
+        <div class="addthis_inline_share_toolbox_2gmu"></div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
@@ -177,14 +178,14 @@
         var handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
         var handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
 
-        var handsome1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome1+'</p>';
-        var handsome2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+handsome2+'</p>';
+        var handsome1Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome1 + '</p>';
+        var handsome2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome2 + '</p>';
 
         var ugly1 = (prediction1[1].probability.toFixed(2)) * 100;
         var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
 
-        var ugly1Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly1+'</p>';
-        var ugly2Text =  '<p style="color:black;font-size:1.0rem;text-align:center;">'+ugly2+'</p>';
+        var ugly1Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly1 + '</p>';
+        var ugly2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly2 + '</p>';
 
         $(".percent-bar-handsome").eq(0).data("per", handsome1);
         $(".percent-bar-handsome").eq(1).data("per", handsome2);
@@ -225,17 +226,25 @@
   </div>
 </body>
 <script>
+
   init();
+  var userAgent = window.navigator.userAgent;
 
   function checkLoading() {
     var image1 = $('#face-image1').attr("src");
     var image2 = $('#face-image2').attr("src");
     if (image1 != "#" && image2 != "#") {
       $(".loading").show();
-      setTimeout("predict()", 500);
+
+      if (userAgent.indexOf('chrome') != -1 ) {
+        setTimeout("predict()", 500);
+      } else if (userAgent.indexOf('safari') != -1) {
+        predict();
+      } 
+      
       //init().then(function () {
-        //predict();
-        $('#loading').hide();
+      //predict();
+      $('#loading').hide();
       //});
     }
   }
