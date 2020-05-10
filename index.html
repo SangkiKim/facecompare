@@ -167,7 +167,7 @@
       async function predict2(){
         var image2 = document.getElementById("face-image2");
         const prediction2 = await model.predict(image2, false);
-        handsome2 = (prediction2[0].probability.toFixed(2)) * 100;
+        handsome2 = Math.round(prediction2[0].probability.toFixed(2) * 100);
         var handsome2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome2 + '</p>';
         var ugly2 = (prediction2[1].probability.toFixed(2)) * 100;
         var ugly2Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + ugly2 + '</p>';
@@ -188,7 +188,7 @@
         // for (let i = 0; i < maxPredictions; i++) {
         //prediction[0].className = Handsome prediction1[0].probability.toFixed(2) = 1.00
         //prediction[1].className = Ugly prediction1[1].probability.toFixed(2) = 1.00
-        handsome1 = (prediction1[0].probability.toFixed(2)) * 100;
+        handsome1 = Math.round(prediction1[0].probability.toFixed(2) * 100);
         
 
         var handsome1Text = '<p style="color:black;font-size:1.0rem;text-align:center;">' + handsome1 + '</p>';
