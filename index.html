@@ -226,9 +226,9 @@
   </div>
 </body>
 <script>
-
-  init();
   var userAgent = window.navigator.userAgent;
+
+
 
   function checkLoading() {
     var image1 = $('#face-image1').attr("src");
@@ -236,15 +236,20 @@
     if (image1 != "#" && image2 != "#") {
       $(".loading").show();
 
-      if (userAgent.indexOf('chrome') != -1 ) {
-        setTimeout("predict()", 500);
+      if (userAgent.indexOf('chrome') != -1) {
+        init().then(function () {
+          predict();
+          $('#loading').hide();
+        });
       } else if (userAgent.indexOf('safari') != -1) {
+        init();
         predict();
-      } 
-      
+        $('#loading').hide();
+      }
+
       //init().then(function () {
       //predict();
-      $('#loading').hide();
+      //$('#loading').hide();
       //});
     }
   }
