@@ -362,3 +362,8 @@ ul.percent-ul{
   margin-top:3%;
   display: none;
 }
+
+.ad-banner {
+  width: 320px;
+  margin: 0 auto;
+}
