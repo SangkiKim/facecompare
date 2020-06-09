@@ -387,3 +387,8 @@ ul.percent-ul{
   text-transform: uppercase;
   font-weight: 700;
 }
+
+.kakao_adfit{
+  width : 60%;
+  margin:auto;
+}
